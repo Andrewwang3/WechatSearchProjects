@@ -17,8 +17,8 @@
 #         self.dbpool = adbapi.ConnectionPool("MySQLdb",
 #                                             host = "localhost",
 #                                             db = "testwechat", # you must build database named testwechat
-#                                             user = "xxxx",
-#                                             passwd = "xxxx",
+#                                             user = "root",
+#                                             passwd = "fireling",
 #                                             charset = "utf8")
 #     # pipeline default function
 #     def process_item(self, item, spider):
@@ -37,11 +37,11 @@ class WechatprojectPipeline(object):
     def __init__(self):
         connection = pymongo.Connection(host = "localhost", port = 27017)
         db = connection["testwechat"] # you need no build database named testdouban
-        # db.authenticate(name = "xxxx", password = "xxxx") # no name and password for localhost
+        # db.authenticate(name = "root", password = "fireling") # no name and password for localhost
         self.posts = db["result"] # you need not build collection named book
     # pipeline default function
     def process_item(self, item, spider):
-        self.posts.insert(dict(item)) # json convert to dict
+        self.posts.insert(dict(item)) # convert json to dict
         return item
 
 
